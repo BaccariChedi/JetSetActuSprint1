@@ -75,8 +75,18 @@ public class Accueil extends javax.swing.JFrame {
         });
 
         jButton2.setText("Gestion des Rubriques ");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton2MouseReleased(evt);
+            }
+        });
 
         jButton3.setText("Statistiques & Rapports ");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton3MouseReleased(evt);
+            }
+        });
 
         jButton4.setText("Quitter");
 
@@ -138,6 +148,22 @@ public class Accueil extends javax.swing.JFrame {
        ListeClient c=new ListeClient();
         c.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseReleased
+        // TODO add your handling code here:
+        AccueilGestionDesRubriqueAdmin a= new AccueilGestionDesRubriqueAdmin();
+        a.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jButton2MouseReleased
+
+    private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
+        // TODO add your handling code here:
+        StatrappAdmin s=new StatrappAdmin();
+        s.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jButton3MouseReleased
 
     /**
      * @param args the command line arguments
