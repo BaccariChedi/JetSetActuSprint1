@@ -8,10 +8,15 @@ package GUI;
 
 import DAO.AlbumDAO;
 import DAO.EvenementDAO;
+import DAO.ImageDAO;
 import DAO.LieuDAO;
+import DAO.VideoDAO;
 import entities.Album;
 import entities.Evenement;
 import entities.Lieu;
+import entities.Image;
+import entities.Video;
+//import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -535,21 +540,31 @@ public class AjouterEvenements extends javax.swing.JFrame {
     }//GEN-LAST:event_AlbumBoxHierarchyChanged
 
     private void ImageBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ImageBoxMouseClicked
-        JOptionPane.showInputDialog(null,"Veuillez saisire un Titre D'Image","Nom Image",JOptionPane.QUESTION_MESSAGE);
+       String sh= JOptionPane.showInputDialog(null,"Veuillez saisire un Titre D'Image","Nom Image",JOptionPane.QUESTION_MESSAGE);
         JFileChooser ch =new JFileChooser();
         ch.showOpenDialog(null);
         File f =ch.getSelectedFile();
         filename=f.getAbsolutePath();
         ImageBox.setText(filename);
+        Image i=new Image();
+        i.setTitre(sh);
+        i.setLienImage(filename);
+        ImageDAO I =new ImageDAO();
+        I.insertImage(i);
     }//GEN-LAST:event_ImageBoxMouseClicked
 
     private void VideoBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VideoBoxMouseClicked
-       JOptionPane.showInputDialog(null,"Veuillez saisire un Titre De Video","Nom Video",JOptionPane.QUESTION_MESSAGE);
+       String sh=JOptionPane.showInputDialog(null,"Veuillez saisire un Titre De Video","Nom Video",JOptionPane.QUESTION_MESSAGE);
         JFileChooser ch =new JFileChooser();
         ch.showOpenDialog(null);
         File f =ch.getSelectedFile();
         filename=f.getAbsolutePath();
         VideoBox.setText(filename);
+        Video v = new Video();
+        VideoDAO V=new VideoDAO();
+        v.setTitre(sh);
+        v.setLienVideo(filename);
+        
     }//GEN-LAST:event_VideoBoxMouseClicked
 
     private void ImageBoxMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ImageBoxMouseDragged
