@@ -102,6 +102,11 @@ public class AccueilGestionDesRubriqueAdmin extends javax.swing.JFrame {
         });
 
         QuitterBox.setText("Quitter");
+        QuitterBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuitterBoxActionPerformed(evt);
+            }
+        });
 
         AjouterButton1.setText("Ajouter  Rubrique");
         AjouterButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -198,6 +203,11 @@ public class AccueilGestionDesRubriqueAdmin extends javax.swing.JFrame {
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_ReturnActionPerformed
+
+    private void QuitterBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitterBoxActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_QuitterBoxActionPerformed
 
     /**
      * @param args the command line arguments

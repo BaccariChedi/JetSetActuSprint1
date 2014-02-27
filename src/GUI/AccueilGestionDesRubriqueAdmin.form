@@ -188,6 +188,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Quitter"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="QuitterBoxActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="AjouterButton1">
           <Properties>
