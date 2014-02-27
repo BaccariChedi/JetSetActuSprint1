@@ -37,6 +37,7 @@ public class AccueilGestionDesRubriqueAdmin extends javax.swing.JFrame {
         ModiSuppButton = new javax.swing.JButton();
         QuitterBox = new javax.swing.JButton();
         AjouterButton1 = new javax.swing.JButton();
+        Return = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +102,11 @@ public class AccueilGestionDesRubriqueAdmin extends javax.swing.JFrame {
         });
 
         QuitterBox.setText("Quitter");
+        QuitterBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuitterBoxActionPerformed(evt);
+            }
+        });
 
         AjouterButton1.setText("Ajouter  Rubrique");
         AjouterButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -109,12 +115,21 @@ public class AccueilGestionDesRubriqueAdmin extends javax.swing.JFrame {
             }
         });
 
+        Return.setText("Return");
+        Return.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReturnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(669, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(Return, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(QuitterBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -124,7 +139,7 @@ public class AccueilGestionDesRubriqueAdmin extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(ModiSuppButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(VoirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +151,9 @@ public class AccueilGestionDesRubriqueAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(VoirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
-                .addComponent(QuitterBox)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(QuitterBox)
+                    .addComponent(Return))
                 .addContainerGap())
         );
 
@@ -180,6 +197,18 @@ public class AccueilGestionDesRubriqueAdmin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_AjouterButton1ActionPerformed
 
+    private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed
+        // TODO add your handling code here:
+         Accueil  a =new Accueil();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ReturnActionPerformed
+
+    private void QuitterBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitterBoxActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_QuitterBoxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -219,6 +248,7 @@ public class AccueilGestionDesRubriqueAdmin extends javax.swing.JFrame {
     private javax.swing.JButton AjouterButton1;
     private javax.swing.JButton ModiSuppButton;
     private javax.swing.JButton QuitterBox;
+    private javax.swing.JButton Return;
     private javax.swing.JButton VoirButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
