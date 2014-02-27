@@ -115,7 +115,7 @@ public class AccueilGestionDesRubriqueAdmin extends javax.swing.JFrame {
             }
         });
 
-        Return.setText("Quitter");
+        Return.setText("Return");
         Return.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ReturnActionPerformed(evt);
