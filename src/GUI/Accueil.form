@@ -152,6 +152,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Quitter"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton4MouseReleased"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -89,6 +89,11 @@ public class Accueil extends javax.swing.JFrame {
         });
 
         jButton4.setText("Quitter");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton4MouseReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -164,6 +169,11 @@ public class Accueil extends javax.swing.JFrame {
         this.setVisible(false);
         
     }//GEN-LAST:event_jButton3MouseReleased
+
+    private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton4MouseReleased
 
     /**
      * @param args the command line arguments
