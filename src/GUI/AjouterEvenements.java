@@ -535,7 +535,7 @@ public class AjouterEvenements extends javax.swing.JFrame {
     }//GEN-LAST:event_AlbumBoxHierarchyChanged
 
     private void ImageBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ImageBoxMouseClicked
-        JOptionPane.showInputDialog(null,"Veuillez saisire un Nom D'Image","Nom Image",JOptionPane.QUESTION_MESSAGE);
+        JOptionPane.showInputDialog(null,"Veuillez saisire un Titre D'Image","Nom Image",JOptionPane.QUESTION_MESSAGE);
         JFileChooser ch =new JFileChooser();
         ch.showOpenDialog(null);
         File f =ch.getSelectedFile();
@@ -544,7 +544,7 @@ public class AjouterEvenements extends javax.swing.JFrame {
     }//GEN-LAST:event_ImageBoxMouseClicked
 
     private void VideoBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VideoBoxMouseClicked
-       JOptionPane.showInputDialog(null,"Veuillez saisire un Nom De Video","Nom Video",JOptionPane.QUESTION_MESSAGE);
+       JOptionPane.showInputDialog(null,"Veuillez saisire un Titre De Video","Nom Video",JOptionPane.QUESTION_MESSAGE);
         JFileChooser ch =new JFileChooser();
         ch.showOpenDialog(null);
         File f =ch.getSelectedFile();

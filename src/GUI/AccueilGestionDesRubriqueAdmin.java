@@ -175,7 +175,9 @@ public class AccueilGestionDesRubriqueAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_ModiSuppButtonActionPerformed
 
     private void AjouterButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjouterButton1ActionPerformed
-        // TODO add your handling code here:
+        AjouterEvenements  a =new AjouterEvenements();
+        a.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_AjouterButton1ActionPerformed
 
     /**

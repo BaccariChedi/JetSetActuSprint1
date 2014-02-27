@@ -36,7 +36,7 @@ import javax.swing.table.DefaultTableModel;
      
      
  
-public class ListRubriqueFrame extends javax.swing.JFrame {
+public final class ListRubriqueFrame extends javax.swing.JFrame {
     
     EvenementDAO E = new EvenementDAO();
     Evenement e = new Evenement();
@@ -55,7 +55,7 @@ public class ListRubriqueFrame extends javax.swing.JFrame {
          if(L.isEmpty())
          {JOptionPane jop;
          jop =new JOptionPane();
-         jop.showMessageDialog(null,"Rubrique Introuvable !","Message Erreur",JOptionPane.ERROR_MESSAGE);
+         JOptionPane.showMessageDialog(null,"Rubrique Introuvable !","Message Erreur",JOptionPane.ERROR_MESSAGE);
          }
          DefaultTableModel Tm =(DefaultTableModel) TableauList.getModel();
 
