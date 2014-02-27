@@ -241,4 +241,34 @@ public class ReservationDAO {
             return null;
         }
     }
+    
+    public List<Reservation> DisplayAllReservation(){
+        
+ List<Reservation> listReservation = new ArrayList<Reservation>();
+
+        String requete = "select * from reserv ";
+        try {
+           Statement statement = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+
+            while(resultat.next()){
+                
+                Reservation Reservation =new Reservation();
+                  Reservation.setIdReservation(resultat.getInt(1));
+                Reservation.setIdEvenement(resultat.getInt(2));
+                Reservation.setIdClient(resultat.getInt(3));
+                Reservation.setNbrPlace(resultat.getInt(4));
+                Reservation.setClasse(resultat.getString(5));
+                        Reservation.setDateReservation(resultat.getString(7));
+
+                listReservation.add(Reservation);
+            }
+            return listReservation;
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des depots "+ex.getMessage());
+            return null;
+        }
+    }
 }
