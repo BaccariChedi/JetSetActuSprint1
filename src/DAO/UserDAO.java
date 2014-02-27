@@ -370,5 +370,38 @@ public boolean VerifEmail(String email){
     }
   
  
+    public List<User> DisplayAllUserByNomPrenom(String nomOrPrenom) {
+         List<User> listeUsert = new ArrayList<User>();
+
+        String requete = "select * from user where valide=1 and nom=? or prenom =?";
+        try {
+          PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setString(1, nomOrPrenom);
+            ps.setString(2, nomOrPrenom);
+            ResultSet resultat = ps.executeQuery();
+
+            while(resultat.next()){
+                
+                User user =new User();
+            user.setIdUser(resultat.getInt(1));
+                user.setNom(resultat.getString(2));
+                user.setPrenom(resultat.getString(3));
+                user.setEmail(resultat.getString(4));
+                user.setPwd(resultat.getString(5));
+                user.setTel(resultat.getInt(6));
+                user.setAdresse(resultat.getString(7));
+                user.setDateNaissance(resultat.getString(8));
+                user.setRole(resultat.getInt(9));
+                user.setValide(resultat.getInt(10));
+
+                listeUsert.add(user);
+            }
+            return listeUsert;
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des depots "+ex.getMessage());
+            return null;
+        }
+    }
  
 }
