@@ -138,4 +138,32 @@ public class ImageDAO {
         }
     }
      
+    
+    
+    
+    
+    public Image findImageByTitreAndLien(String titre, String Lien){
+    Image image = new Image();
+     String requete = "select * from image where titre = ? and lienImage=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setString(1, titre);
+            ps.setString(2, Lien);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next())
+            {
+                image.setIdImage(resultat.getInt(1));
+                image.setTitre(resultat.getString(2));
+                image.setLienImage(resultat.getString(3));
+                
+            }
+            return image;
+
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche de l'image "+ex.getMessage());
+            return null;
+        }
+    }
+    
 }

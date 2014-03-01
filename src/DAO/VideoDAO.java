@@ -111,6 +111,7 @@ public class VideoDAO {
             return null;
         }
     }
+     
 
     public List<Video> DisplayAllVideo(){
 
@@ -135,6 +136,37 @@ public class VideoDAO {
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors du chargement des video "+ex.getMessage());
+            return null;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    public Video findVideoByTitreAndLien(String titre,String Lien ){
+    Video video = new Video();
+     String requete = "select * from video where titre = ? and lienVideo= ?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            ps.setString(1, titre);
+            ps.setString(2, Lien);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next())
+            {
+                video.setIdVideo(resultat.getInt(1));
+                video.setTitre(resultat.getString(2));
+                video.setLienVideo(resultat.getString(3));
+                
+            }
+            return video;
+
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche de la video "+ex.getMessage());
             return null;
         }
     }
