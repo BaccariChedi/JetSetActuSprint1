@@ -8,10 +8,14 @@ package GUI;
 
 import DAO.AlbumDAO;
 import DAO.EvenementDAO;
+import DAO.ImageDAO;
 import DAO.LieuDAO;
+import DAO.VideoDAO;
 import entities.Album;
 import entities.Evenement;
+import entities.Image;
 import entities.Lieu;
+import entities.Video;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,6 +40,25 @@ public class EvenementsBox extends javax.swing.JFrame {
         //VideoBox.setVisible(false);
         remplir_Lieu();
         remplir_Album();
+        VideoBox.setEnabled(false);
+        ImageBox.setEnabled(false);
+        VisibleFalse();
+        
+    }
+    
+   
+        
+
+    
+    public void VisibleFalse()
+    {
+       EtDate.setVisible(false);
+        EtAlbum.setVisible(false);
+        EtHeur.setVisible(false);
+        EtLieu.setVisible(false);
+        EtTitre.setVisible(false);
+        EtType.setVisible(false);
+        EtImage.setVisible(false); 
     }
     public void remplir_Lieu()
     {
@@ -87,9 +110,13 @@ public class EvenementsBox extends javax.swing.JFrame {
 //    SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
         IdEvenementBox.setText(e.getIdEvenement()+"");
         AlbumBox.setSelectedIndex(e.getIdAlum());
-        ImageBox.setText(e.getIdImage()+"");
+        Image ii = new Image();
+        ii=I.findImageById(e.getIdImage());
+        ImageBox.setText(ii.getLienImage());
         LieuBox.setSelectedIndex(e.getIdLieu());
-        VideoBox.setText(e.getIdVideo()+"");
+        Video vv =new Video();
+        vv=V.findVideoById(e.getIdVideo());
+        VideoBox.setText(vv.getLienVideo());
         TypeBox.setSelectedIndex(ReturnIndexOfEvents( e.getType()));
         TitreBox.setText(e.getTitre());
         DateEvenementBox.setText(e.getDateEvenement().toString());
@@ -102,9 +129,9 @@ public class EvenementsBox extends javax.swing.JFrame {
         System.out.println(M+":"+H);
         HeurChoix.setSelectedIndex(Integer.parseInt(H));
         MinChoix.setSelectedIndex(Integer.parseInt(M));
-        DescriptionBox.setText(e.getDescription());
-        DureeBox.setText(e.getDuree()+"");
-        NbrVueBox.setText(e.getNbrVue()+"");
+        DescriptionBox2.setText(e.getDescription());
+        DureeBox1.setText(e.getDuree()+"");
+        //NbrVueBox.setText(e.getNbrVue()+"");
       // ButtonAjouter.setEnabled(false);
         IdEvenementBox.setEnabled(false);
         AlbumBox.setEnabled(false);
@@ -116,15 +143,66 @@ public class EvenementsBox extends javax.swing.JFrame {
         HeurChoix.setEnabled(false);
         MinChoix.setEnabled(false);
         DateEvenementBox.setEnabled(false);
-        DescriptionBox.setEnabled(false);
-        DureeBox.setEnabled(false);
-        NbrVueBox.setEnabled(false);
+        DescriptionBox2.setEnabled(false);
+        DureeBox1.setEnabled(false);
+        //NbrVueBox.setEnabled(false);
         ValiderButton.setVisible(false);
-        
+        if(ReturnIndexOfEvents(e.getType())!=3)
+        {
+            VideoLab.setVisible(false);
+            VideoBox.setVisible(false);
+        }
         
         
     }
 
+    public boolean verifcation() {
+        int i = 0;
+        if (DateEvenementBox.getText().equals("01/03/14")) {
+            EtDate.setVisible(true);
+            i++;
+        }
+
+        if (DureeBox1.getText().equals("")) {
+            EtAlbum.setVisible(true);
+            i++;
+        }
+        if (!DureeBox1.getText().equals("")) {
+
+            if (i == 0) {
+                try {
+                    int t = Integer.parseInt(DureeBox1.getText());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "la Durée doit etre un numero svp", "Not Number", JOptionPane.ERROR_MESSAGE);
+                }
+                i++;
+                EtAlbum.setVisible(true);
+            }
+            i++;
+        }
+        if (LieuBox.getSelectedIndex() == 0) {
+            EtLieu.setVisible(true);
+            i++;
+        }
+        if (TitreBox.getText().equals("")) {
+            EtTitre.setVisible(true);
+            i++;
+        }
+        if (TypeBox.getSelectedIndex() == 0) {
+            EtType.setVisible(true);
+            i++;
+        }
+        if (ImageBox.getText().equals("Clique Ici")) {
+            EtImage.setVisible(true);
+            i++;
+        }
+//EtHeur.setEnabled(false);
+        if (i != 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,6 +218,8 @@ public class EvenementsBox extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        ModifierButton = new javax.swing.JButton();
+        SupprimerButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -149,18 +229,13 @@ public class EvenementsBox extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        VideoLab = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        NbrLab = new javax.swing.JLabel();
         IdEvenementBox = new javax.swing.JTextField();
         TitreBox = new javax.swing.JTextField();
-        DescriptionBox = new javax.swing.JTextField();
         DureeBox = new javax.swing.JTextField();
         ImageBox = new javax.swing.JTextField();
         VideoBox = new javax.swing.JTextField();
-        NbrVueBox = new javax.swing.JTextField();
-        ModifierButton = new javax.swing.JButton();
-        SupprimerButton = new javax.swing.JButton();
         ValiderButton = new javax.swing.JButton();
         TypeBox = new javax.swing.JComboBox();
         LieuBox = new javax.swing.JComboBox();
@@ -170,6 +245,17 @@ public class EvenementsBox extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         AlbumBox = new javax.swing.JComboBox();
         DateEvenementBox = new datechooser.beans.DateChooserCombo();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        DescriptionBox2 = new javax.swing.JTextArea();
+        EtType = new javax.swing.JLabel();
+        EtTitre = new javax.swing.JLabel();
+        EtDate = new javax.swing.JLabel();
+        EtHeur = new javax.swing.JLabel();
+        EtAlbum = new javax.swing.JLabel();
+        EtImage = new javax.swing.JLabel();
+        EtLieu = new javax.swing.JLabel();
+        DureeBox1 = new javax.swing.JTextField();
+        EtDuree = new javax.swing.JLabel();
 
         jLabel12.setText("jLabel12");
 
@@ -204,7 +290,7 @@ public class EvenementsBox extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -216,20 +302,41 @@ public class EvenementsBox extends javax.swing.JFrame {
             }
         });
 
+        ModifierButton.setText("Modifier");
+        ModifierButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifierButtonActionPerformed(evt);
+            }
+        });
+
+        SupprimerButton.setText("Supprimer");
+        SupprimerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SupprimerButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(ModifierButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(SupprimerButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addComponent(jButton1))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ModifierButton)
+                    .addComponent(jButton1)
+                    .addComponent(SupprimerButton))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
@@ -266,17 +373,13 @@ public class EvenementsBox extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Image");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Video");
+        VideoLab.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        VideoLab.setForeground(new java.awt.Color(255, 255, 255));
+        VideoLab.setText("Video");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Lieu");
-
-        NbrLab.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        NbrLab.setForeground(new java.awt.Color(255, 255, 255));
-        NbrLab.setText("NbrVue");
 
         ImageBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -292,20 +395,6 @@ public class EvenementsBox extends javax.swing.JFrame {
         VideoBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 VideoBoxMouseClicked(evt);
-            }
-        });
-
-        ModifierButton.setText("Modifier");
-        ModifierButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModifierButtonActionPerformed(evt);
-            }
-        });
-
-        SupprimerButton.setText("Supprimer");
-        SupprimerButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SupprimerButtonActionPerformed(evt);
             }
         });
 
@@ -387,121 +476,177 @@ public class EvenementsBox extends javax.swing.JFrame {
             }
         });
 
+        DescriptionBox2.setColumns(20);
+        DescriptionBox2.setRows(5);
+        jScrollPane1.setViewportView(DescriptionBox2);
+
+        EtType.setForeground(new java.awt.Color(255, 245, 245));
+        EtType.setText("\"*\"");
+
+        EtTitre.setForeground(new java.awt.Color(255, 245, 245));
+        EtTitre.setText("\"*\"");
+
+        EtDate.setForeground(new java.awt.Color(255, 245, 245));
+        EtDate.setText("\"*\"");
+
+        EtHeur.setForeground(new java.awt.Color(255, 245, 245));
+        EtHeur.setText("\"*\"");
+
+        EtAlbum.setForeground(new java.awt.Color(255, 245, 245));
+        EtAlbum.setText("\"*\"");
+
+        EtImage.setForeground(new java.awt.Color(255, 245, 245));
+        EtImage.setText("\"*\"");
+
+        EtLieu.setForeground(new java.awt.Color(255, 245, 245));
+        EtLieu.setText("\"*\"");
+
+        EtDuree.setForeground(new java.awt.Color(255, 245, 245));
+        EtDuree.setText("\"*\"");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(HeurChoix, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(MinChoix, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
                             .addComponent(jLabel7)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(NbrLab))
-                        .addGap(112, 112, 112)
+                            .addComponent(VideoLab)
+                            .addComponent(jLabel11))
+                        .addGap(32, 32, 32)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DateEvenementBox, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LieuBox, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(IdEvenementBox)
-                                    .addComponent(TitreBox)
-                                    .addComponent(DescriptionBox)
-                                    .addComponent(DureeBox)
-                                    .addComponent(ImageBox)
-                                    .addComponent(VideoBox)
-                                    .addComponent(NbrVueBox, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                                    .addComponent(TypeBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TitreBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(EtTitre))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(SupprimerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(ModifierButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(ValiderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(AlbumBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(38, Short.MAX_VALUE))))
+                                    .addComponent(TypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DureeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(EtType))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(DateEvenementBox, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(EtDate))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(18, 18, 18)
+                                .addComponent(MinChoix, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(EtHeur))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(AlbumBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(EtAlbum))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(ImageBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(EtImage))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(LieuBox, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(EtLieu))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(VideoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(DureeBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(EtDuree))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(31, 31, 31)
+                                .addComponent(HeurChoix, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(54, 54, 54)
+                                .addComponent(IdEvenementBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(64, 64, 64))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ValiderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(IdEvenementBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(IdEvenementBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(TypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(TitreBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(ModifierButton)
-                        .addGap(38, 38, 38)
-                        .addComponent(SupprimerButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(TitreBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EtTitre)))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(DureeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(EtType)))
+                .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DescriptionBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(DateEvenementBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel4)
+                    .addComponent(DateEvenementBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EtDate))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(HeurChoix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
                     .addComponent(MinChoix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(DureeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(AlbumBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(ImageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(VideoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(LieuBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EtHeur))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NbrLab)
-                    .addComponent(NbrVueBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ValiderButton))
+                    .addComponent(jLabel6)
+                    .addComponent(DureeBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EtDuree))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(AlbumBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EtAlbum))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ImageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(EtImage))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(VideoLab)
+                    .addComponent(VideoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(LieuBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EtLieu))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ValiderButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -509,18 +654,18 @@ public class EvenementsBox extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -530,18 +675,15 @@ public class EvenementsBox extends javax.swing.JFrame {
     private void ModifierButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierButtonActionPerformed
         IdEvenementBox.setEnabled(false);
         AlbumBox.setEnabled(true);
-        ImageBox.setEnabled(true);
-        LieuBox.setEnabled(true);
-        VideoBox.setEnabled(true);
+        LieuBox.setEnabled(true); 
         TypeBox.setEnabled(true);
         TitreBox.setEnabled(true);
         HeurChoix.setEnabled(true);
         MinChoix.setEnabled(true);
         DateEvenementBox.setEnabled(true);
-        DescriptionBox.setEnabled(true);
+        DescriptionBox2.setEnabled(true);
         DureeBox.setEnabled(true);
-        NbrVueBox.setVisible(false);
-        NbrLab.setVisible(false);
+        
         ModifierButton.setVisible(false);
         SupprimerButton.setVisible(false);
         ValiderButton.setVisible(true);
@@ -550,29 +692,38 @@ public class EvenementsBox extends javax.swing.JFrame {
     private void ValiderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValiderButtonActionPerformed
         Evenement e = new  Evenement();
         EvenementDAO E= new EvenementDAO();
-         //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
-         //SimpleDateFormat formatter1 = new SimpleDateFormat("hh:mm");
+        VisibleFalse();
+         if(verifcation()== true){
+         
         int id=Integer.parseInt(IdEvenementBox.getText());
         e.setIdEvenement(id);
         e.setIdAlum(AlbumBox.getSelectedIndex());
-        e.setIdVideo(10/*Integer.parseInt(VideoBox.getText())*/);
-        e.setIdImage(10/*Integer.parseInt(ImageBox.getText())*/);
+        if(TypeBox.getSelectedIndex()==3){
+            v1=V.findVideoByTitreAndLien(v.getTitre(), v.getLienVideo());
+           e.setIdVideo(v1.getIdVideo());
+            }
+        i1=I.findImageByTitreAndLien(i.getTitre(), i.getLienImage());
+        e.setIdImage(i1.getIdImage());
         e.setIdLieu(LieuBox.getSelectedIndex());
         e.setTitre(TitreBox.getText());
         e.setType(TypeBox.getModel().toString());
         e.setDateEvenement(DateEvenementBox.getText());
-        e.setDescription(DescriptionBox.getText());
+        e.setDescription(DescriptionBox2.getText());
         
         int h=HeurChoix.getSelectedIndex();
         int m=MinChoix.getSelectedIndex();
         String sh=h+":"+m;
         e.setDateHeure(sh);
-        e.setDuree(Double.parseDouble(DureeBox.getText()));
-        e.setNbrVue(Integer.parseInt(NbrVueBox.getText()));
+        e.setDuree(Double.parseDouble(DureeBox1.getText()));
+       // e.setNbrVue(Integer.parseInt(NbrVueBox.getText()));
         System.out.println(e.toString());
         E.updateEvenement(e, id);
         JOptionPane.showMessageDialog(null,"Modification effectuée Avec Succès" ," Modification",1);
-        
+         }
+         else{
+             JOptionPane.showMessageDialog(null, "Erreur lors de  La Modification", "Erreur Modification", JOptionPane.ERROR_MESSAGE);
+         
+         }
     }//GEN-LAST:event_ValiderButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -620,12 +771,15 @@ public class EvenementsBox extends javax.swing.JFrame {
     }//GEN-LAST:event_HeurChoixActionPerformed
 
     private void ImageBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ImageBoxMouseClicked
-        JOptionPane.showInputDialog(null,"Veuillez saisire un Nom D'Image","Nom Image",JOptionPane.QUESTION_MESSAGE);
+       String sh= JOptionPane.showInputDialog(null,"Veuillez saisire un Nom D'Image","Nom Image",JOptionPane.QUESTION_MESSAGE);
         JFileChooser ch =new JFileChooser();
         ch.showOpenDialog(null);
         File f =ch.getSelectedFile();
         filename=f.getAbsolutePath();
         ImageBox.setText(filename);
+        i.setTitre(sh);
+        i.setLienImage(filename);
+        I.insertImage(i);
     }//GEN-LAST:event_ImageBoxMouseClicked
 
     private void AlbumBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlbumBoxMouseClicked
@@ -645,12 +799,16 @@ public class EvenementsBox extends javax.swing.JFrame {
     }//GEN-LAST:event_ImageBoxActionPerformed
 
     private void VideoBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VideoBoxMouseClicked
-       JOptionPane.showInputDialog(null,"Veuillez saisire un Nom De Video","Nom Video",JOptionPane.QUESTION_MESSAGE);
+       String sh=JOptionPane.showInputDialog(null,"Veuillez saisire un Nom De Video","Nom Video",JOptionPane.QUESTION_MESSAGE);
         JFileChooser ch =new JFileChooser();
         ch.showOpenDialog(null);
         File f =ch.getSelectedFile();
         filename=f.getAbsolutePath();
         VideoBox.setText(filename);
+        v.setTitre(sh);
+        v.setLienVideo(filename);
+        V.insertVideo(v);
+
     }//GEN-LAST:event_VideoBoxMouseClicked
 
     /**
@@ -691,24 +849,31 @@ public class EvenementsBox extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox AlbumBox;
     private datechooser.beans.DateChooserCombo DateEvenementBox;
-    private javax.swing.JTextField DescriptionBox;
+    private javax.swing.JTextArea DescriptionBox2;
     private javax.swing.JTextField DureeBox;
+    private javax.swing.JTextField DureeBox1;
+    private javax.swing.JLabel EtAlbum;
+    private javax.swing.JLabel EtDate;
+    private javax.swing.JLabel EtDuree;
+    private javax.swing.JLabel EtHeur;
+    private javax.swing.JLabel EtImage;
+    private javax.swing.JLabel EtLieu;
+    private javax.swing.JLabel EtTitre;
+    private javax.swing.JLabel EtType;
     private javax.swing.JComboBox HeurChoix;
     private javax.swing.JTextField IdEvenementBox;
     private javax.swing.JTextField ImageBox;
     private javax.swing.JComboBox LieuBox;
     private javax.swing.JComboBox MinChoix;
     private javax.swing.JButton ModifierButton;
-    private javax.swing.JLabel NbrLab;
-    private javax.swing.JTextField NbrVueBox;
     private javax.swing.JButton SupprimerButton;
     private javax.swing.JTextField TitreBox;
     private javax.swing.JComboBox TypeBox;
     private javax.swing.JButton ValiderButton;
     private javax.swing.JTextField VideoBox;
+    private javax.swing.JLabel VideoLab;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -725,10 +890,17 @@ public class EvenementsBox extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 private ImageIcon format =null;
 String filename=null;
 int s =0;
 byte[] person_image=null;
+VideoDAO V = new VideoDAO();
+    Video v = new Video();
+    Video v1 = new Video();
+    ImageDAO I = new ImageDAO();
+    Image i = new Image();
+    Image i1 = new Image();
 
 }
