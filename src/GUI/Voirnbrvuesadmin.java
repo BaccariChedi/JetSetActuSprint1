@@ -309,7 +309,7 @@ public class Voirnbrvuesadmin extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_chercherActionPerformed
-
+*/
     private void nbrvuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nbrvuesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nbrvuesActionPerformed
