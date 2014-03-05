@@ -216,10 +216,10 @@ public class EvenementsBox extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         ModifierButton = new javax.swing.JButton();
         SupprimerButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -272,6 +272,22 @@ public class EvenementsBox extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(255, 51, 204));
         jLabel15.setText("Actu");
 
+        ModifierButton.setBackground(new java.awt.Color(1, 1, 1));
+        ModifierButton.setIcon(new javax.swing.ImageIcon("/home/ahmed/NetBeansProjects/JetSetActuSprint1/src/Images/modify.png")); // NOI18N
+        ModifierButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifierButtonActionPerformed(evt);
+            }
+        });
+
+        SupprimerButton.setBackground(new java.awt.Color(1, 1, 1));
+        SupprimerButton.setIcon(new javax.swing.ImageIcon("/home/ahmed/NetBeansProjects/JetSetActuSprint1/src/Images/delete.png")); // NOI18N
+        SupprimerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SupprimerButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -281,38 +297,31 @@ public class EvenementsBox extends javax.swing.JFrame {
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(SupprimerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ModifierButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ModifierButton, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(SupprimerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        jButton1.setText("Retour");
+        jButton1.setBackground(new java.awt.Color(12, 12, 4));
+        jButton1.setIcon(new javax.swing.ImageIcon("/home/ahmed/NetBeansProjects/JetSetActuSprint1/src/Images/return1.png")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        ModifierButton.setText("Modifier");
-        ModifierButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModifierButtonActionPerformed(evt);
-            }
-        });
-
-        SupprimerButton.setText("Supprimer");
-        SupprimerButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SupprimerButtonActionPerformed(evt);
             }
         });
 
@@ -322,21 +331,14 @@ public class EvenementsBox extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(ModifierButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(SupprimerButton)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ModifierButton)
-                    .addComponent(jButton1)
-                    .addComponent(SupprimerButton))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
@@ -481,28 +483,28 @@ public class EvenementsBox extends javax.swing.JFrame {
         jScrollPane1.setViewportView(DescriptionBox2);
 
         EtType.setForeground(new java.awt.Color(255, 245, 245));
-        EtType.setText("\"*\"");
+        EtType.setIcon(new javax.swing.ImageIcon("/home/ahmed/NetBeansProjects/JetSetActuSprint1/src/Images/error.png")); // NOI18N
 
         EtTitre.setForeground(new java.awt.Color(255, 245, 245));
-        EtTitre.setText("\"*\"");
+        EtTitre.setIcon(new javax.swing.ImageIcon("/home/ahmed/NetBeansProjects/JetSetActuSprint1/src/Images/error.png")); // NOI18N
 
         EtDate.setForeground(new java.awt.Color(255, 245, 245));
-        EtDate.setText("\"*\"");
+        EtDate.setIcon(new javax.swing.ImageIcon("/home/ahmed/NetBeansProjects/JetSetActuSprint1/src/Images/error.png")); // NOI18N
 
         EtHeur.setForeground(new java.awt.Color(255, 245, 245));
-        EtHeur.setText("\"*\"");
+        EtHeur.setIcon(new javax.swing.ImageIcon("/home/ahmed/NetBeansProjects/JetSetActuSprint1/src/Images/error.png")); // NOI18N
 
         EtAlbum.setForeground(new java.awt.Color(255, 245, 245));
-        EtAlbum.setText("\"*\"");
+        EtAlbum.setIcon(new javax.swing.ImageIcon("/home/ahmed/NetBeansProjects/JetSetActuSprint1/src/Images/error.png")); // NOI18N
 
         EtImage.setForeground(new java.awt.Color(255, 245, 245));
-        EtImage.setText("\"*\"");
+        EtImage.setIcon(new javax.swing.ImageIcon("/home/ahmed/NetBeansProjects/JetSetActuSprint1/src/Images/error.png")); // NOI18N
 
         EtLieu.setForeground(new java.awt.Color(255, 245, 245));
-        EtLieu.setText("\"*\"");
+        EtLieu.setIcon(new javax.swing.ImageIcon("/home/ahmed/NetBeansProjects/JetSetActuSprint1/src/Images/error.png")); // NOI18N
 
         EtDuree.setForeground(new java.awt.Color(255, 245, 245));
-        EtDuree.setText("\"*\"");
+        EtDuree.setIcon(new javax.swing.ImageIcon("/home/ahmed/NetBeansProjects/JetSetActuSprint1/src/Images/error.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -541,7 +543,7 @@ public class EvenementsBox extends javax.swing.JFrame {
                                 .addComponent(jLabel13)
                                 .addGap(18, 18, 18)
                                 .addComponent(MinChoix, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                                 .addComponent(EtHeur))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(AlbumBox, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -576,12 +578,11 @@ public class EvenementsBox extends javax.swing.JFrame {
                 .addGap(64, 64, 64))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ValiderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ValiderButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
         jPanel3Layout.setVerticalGroup(
@@ -643,10 +644,11 @@ public class EvenementsBox extends javax.swing.JFrame {
                     .addComponent(EtLieu))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ValiderButton))
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ValiderButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -655,13 +657,13 @@ public class EvenementsBox extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

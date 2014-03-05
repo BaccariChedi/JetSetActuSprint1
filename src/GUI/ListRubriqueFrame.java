@@ -3,68 +3,46 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GUI;
 
-
-
 import DAO.EvenementDAO;
-import entities.Commentaire;
 import entities.Evenement;
-import entities.User;
-import java.text.*;
-import java.awt.print.*;
 import static java.lang.Integer.parseInt;
-import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-
-
 
 /**
  *
  * @author aymen
  */
-
-
-
-    
-     
-     
- 
 public final class ListRubriqueFrame extends javax.swing.JFrame {
-    
+
     EvenementDAO E = new EvenementDAO();
     Evenement e = new Evenement();
- 
+
     /**
      * Creates new form Accueil
      */
     public ListRubriqueFrame() {
         initComponents();
         charger(E.DisplayAllEvenement());
-    
-    }
-    
-     public void charger(List<Evenement> L)
-     {
-         if(L.isEmpty())
-         {JOptionPane jop;
-         jop =new JOptionPane();
-         JOptionPane.showMessageDialog(null,"Rubrique Introuvable !","Message Erreur",JOptionPane.ERROR_MESSAGE);
-         }
-         DefaultTableModel Tm =(DefaultTableModel) TableauList.getModel();
 
-        for(Evenement e :L)
-        {
-            Tm.addRow(new Object[]{e.getIdEvenement(),e.getType(),e.getTitre(),e.getDescription(),e.getDateEvenement(),e.getDateHeure(),e.getDuree(),e.getIdAlum(),e.getIdImage(),e.getIdVideo(),e.getIdLieu(),e.getNbrVue()});
+    }
+
+    public void charger(List<Evenement> L) {
+        if (L.isEmpty()) {
+            JOptionPane jop;
+            jop = new JOptionPane();
+            JOptionPane.showMessageDialog(null, "Rubrique Introuvable !", "Message Erreur", JOptionPane.ERROR_MESSAGE);
         }
-     }
-     
+        DefaultTableModel Tm = (DefaultTableModel) TableauList.getModel();
+
+        for (Evenement e : L) {
+            Tm.addRow(new Object[]{e.getIdEvenement(), e.getType(), e.getTitre(), e.getDescription(), e.getDateEvenement(), e.getDateHeure(), e.getDuree(), e.getIdAlum(), e.getIdImage(), e.getIdVideo(), e.getIdLieu(), e.getNbrVue()});
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,9 +57,8 @@ public final class ListRubriqueFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        RetourButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        PrintButton = new javax.swing.JButton();
         RechercherPar = new javax.swing.JLabel();
         ListType = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -145,10 +122,10 @@ public final class ListRubriqueFrame extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        RetourButton.setText("Retour");
-        RetourButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RetourButtonActionPerformed(evt);
+        jLabel1.setIcon(new javax.swing.ImageIcon("/home/ahmed/NetBeansProjects/JetSetActuSprint1/src/Images/return1.png")); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel1MouseReleased(evt);
             }
         });
 
@@ -157,36 +134,25 @@ public final class ListRubriqueFrame extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(RetourButton, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(RetourButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-
-        PrintButton.setText("Print");
-        PrintButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                PrintButtonMouseReleased(evt);
-            }
-        });
-        PrintButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrintButtonActionPerformed(evt);
-            }
-        });
 
         RechercherPar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         RechercherPar.setForeground(new java.awt.Color(255, 255, 255));
         RechercherPar.setText("Rechercher Par :");
 
+        ListType.setBackground(new java.awt.Color(254, 254, 254));
         ListType.setFont(new java.awt.Font("Ubuntu Condensed", 0, 15)); // NOI18N
         ListType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-----------", "News", "Art", "Films", "Soirees" }));
         ListType.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -205,8 +171,8 @@ public final class ListRubriqueFrame extends javax.swing.JFrame {
             }
         });
 
-        TableauList.setBackground(new java.awt.Color(230, 168, 168));
-        TableauList.setForeground(new java.awt.Color(234, 234, 248));
+        TableauList.setBackground(new java.awt.Color(254, 254, 254));
+        TableauList.setForeground(new java.awt.Color(151, 151, 191));
         TableauList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -245,6 +211,9 @@ public final class ListRubriqueFrame extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Types Rubriques :");
 
+        PanneauRecherche.setBackground(new java.awt.Color(51, 51, 51));
+
+        Labelle.setForeground(new java.awt.Color(254, 254, 254));
         Labelle.setText("Titre:");
 
         TitreBox.addActionListener(new java.awt.event.ActionListener() {
@@ -253,7 +222,7 @@ public final class ListRubriqueFrame extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton1.setText("Ok");
+        jToggleButton1.setIcon(new javax.swing.ImageIcon("/home/ahmed/NetBeansProjects/JetSetActuSprint1/src/Images/search.png")); // NOI18N
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -273,7 +242,7 @@ public final class ListRubriqueFrame extends javax.swing.JFrame {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(129, 129, 129))
             .addGroup(PanneauRechercheLayout.createSequentialGroup()
-                .addComponent(jToggleButton1)
+                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         PanneauRechercheLayout.setVerticalGroup(
@@ -295,20 +264,20 @@ public final class ListRubriqueFrame extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(PrintButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ListType, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RechercherPar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ListRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ListType, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(RechercherPar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ListRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(29, 29, 29)
                         .addComponent(PanneauRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,65 +287,50 @@ public final class ListRubriqueFrame extends javax.swing.JFrame {
                         .addGap(58, 58, 58)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ListType, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ListRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(RechercherPar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56))
+                        .addGap(11, 11, 11))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(PanneauRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)))
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(PrintButton)
-                .addGap(55, 55, 55))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
-  
-    
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       PanneauRecherche.setVisible(false);
-                RechercherPar.setVisible(false);
-                ListRecherche.setVisible(false);
-                
-    
-        
-    }//GEN-LAST:event_formWindowOpened
 
-    private void RetourButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetourButtonActionPerformed
-        AccueilGestionDesRubriqueAdmin a =new AccueilGestionDesRubriqueAdmin();
-        a.setVisible(true);
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_RetourButtonActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        PanneauRecherche.setVisible(false);
+        RechercherPar.setVisible(false);
+        ListRecherche.setVisible(false);
+
+
+    }//GEN-LAST:event_formWindowOpened
 
     private void ListTypeHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_ListTypeHierarchyChanged
 
@@ -384,16 +338,15 @@ public final class ListRubriqueFrame extends javax.swing.JFrame {
 
     private void ListTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListTypeActionPerformed
         // TODO add your handling code here:
-        if (ListType.getSelectedIndex()!= 0)
-        {
+        if (ListType.getSelectedIndex() != 0) {
             RechercherPar.setVisible(true);
-                ListRecherche.setVisible(true);
-                System.out.println(ListType.getSelectedIndex());
-            
-        }
-        else {PanneauRecherche.setVisible(false);
-                RechercherPar.setVisible(false);
-                ListRecherche.setVisible(false);
+            ListRecherche.setVisible(true);
+            System.out.println(ListType.getSelectedIndex());
+
+        } else {
+            PanneauRecherche.setVisible(false);
+            RechercherPar.setVisible(false);
+            ListRecherche.setVisible(false);
         }
     }//GEN-LAST:event_ListTypeActionPerformed
 
@@ -406,59 +359,42 @@ public final class ListRubriqueFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ListRechercheMouseClicked
 
-    private String ReturnTypeOfRecherche (int i)
-    {
-         if(i==1)
-        {
-          return"Date";
-            
-        }
-        else if(i==2)
-        {
-          return "Titre";
-            
-       
-        }else if( i==3)
-        {
+    private String ReturnTypeOfRecherche(int i) {
+        if (i == 1) {
+            return "Date";
+
+        } else if (i == 2) {
+            return "Titre";
+
+        } else if (i == 3) {
             return "ID";
-        }    
-   return null;
-    }
-    private String ReturnTypeOfEvents (int i)
-    {
-         if(i==1)
-        {
-          return"News";
-            
         }
-        else if(i==2)
-        {
-          return "Art";
-            
-       
-        }else if(i==3)
-        {
-            return "Films";
-        }   
-        else 
-        {
-            return "Soirees";
-        }    
-        
-    
-   
+        return null;
     }
-    
-    
+
+    private String ReturnTypeOfEvents(int i) {
+        if (i == 1) {
+            return "News";
+
+        } else if (i == 2) {
+            return "Art";
+
+        } else if (i == 3) {
+            return "Films";
+        } else {
+            return "Soirees";
+        }
+
+    }
+
+
     private void ListRechercheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListRechercheActionPerformed
-        if(ListRecherche.getSelectedIndex()!=0)
-        {
-           Labelle.setText(ReturnTypeOfRecherche(ListRecherche.getSelectedIndex()));
+        if (ListRecherche.getSelectedIndex() != 0) {
+            Labelle.setText(ReturnTypeOfRecherche(ListRecherche.getSelectedIndex()));
             PanneauRecherche.setVisible(true);
             System.out.println(ListType.getSelectedIndex());
-        }
-      else{
-            PanneauRecherche.setVisible(false);  
+        } else {
+            PanneauRecherche.setVisible(false);
         }
     }//GEN-LAST:event_ListRechercheActionPerformed
 
@@ -471,69 +407,56 @@ public final class ListRubriqueFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_TitreBoxActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-      
-       int i=ListType.getSelectedIndex();
+
+        int i = ListType.getSelectedIndex();
 //Recherche par Titre 
-        if(Labelle.getText().equals("Titre"))
-        {   System.out.println("ok "+ReturnTypeOfEvents(i)+"//"+TitreBox.getText());
+        if (Labelle.getText().equals("Titre")) {
+            System.out.println("ok " + ReturnTypeOfEvents(i) + "//" + TitreBox.getText());
 //clear the JTable  
-             DefaultTableModel Tm =(DefaultTableModel) TableauList.getModel();
-             Tm.getDataVector().removeAllElements();
+            DefaultTableModel Tm = (DefaultTableModel) TableauList.getModel();
+            Tm.getDataVector().removeAllElements();
 //Fined and output the recherche  
-             charger( E.DisplayAllEvenementbyTitreAndType(ReturnTypeOfEvents(i), TitreBox.getText()));
-           
+            charger(E.DisplayAllEvenementbyTitreAndType(ReturnTypeOfEvents(i), TitreBox.getText()));
+
         }
 //Recherche par ID
-        if(Labelle.getText().equals("ID"))
-        {   
-            try{
-            int idEv=Integer.parseInt(TitreBox.getText());
-             System.out.println("ok "+ReturnTypeOfEvents(i)+"//"+TitreBox.getText());
+        if (Labelle.getText().equals("ID")) {
+            try {
+                int idEv = Integer.parseInt(TitreBox.getText());
+                System.out.println("ok " + ReturnTypeOfEvents(i) + "//" + TitreBox.getText());
 //clear the JTable  
-             DefaultTableModel Tm =(DefaultTableModel) TableauList.getModel();
-             Tm.getDataVector().removeAllElements();
+                DefaultTableModel Tm = (DefaultTableModel) TableauList.getModel();
+                Tm.getDataVector().removeAllElements();
 //Fined and output the recherche
-             charger( E.DisplayAllEvenementbyIDAndType(ReturnTypeOfEvents(i),idEv ));
-                }
-            catch(Exception ex)
-            {
+                charger(E.DisplayAllEvenementbyIDAndType(ReturnTypeOfEvents(i), idEv));
+            } catch (Exception ex) {
                 JOptionPane jop;
-                jop=new JOptionPane();
-                jop.showMessageDialog(null,"Erreur Dans L'insertion De Identifiant","Message D'Erreur",JOptionPane.ERROR_MESSAGE);
-                        
+                jop = new JOptionPane();
+                jop.showMessageDialog(null, "Erreur Dans L'insertion De Identifiant", "Message D'Erreur", JOptionPane.ERROR_MESSAGE);
+
             }
-         }    
+        }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void TableauListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableauListMouseClicked
-        int row=TableauList.getSelectedRow();
-        
-        String  Table_Click =(TableauList.getModel().getValueAt(row,0).toString());
-        
-      int id=parseInt(Table_Click);
+        int row = TableauList.getSelectedRow();
+
+        String Table_Click = (TableauList.getModel().getValueAt(row, 0).toString());
+
+        int id = parseInt(Table_Click);
 //       //System.out.println(id);     
-       e=E.findEvenementById(id);
-        EvenementsBox EFram =new EvenementsBox();
+        e = E.findEvenementById(id);
+        EvenementsBox EFram = new EvenementsBox();
         EFram.setVisible(true);
         EFram.EvenementAffiche(e);
     }//GEN-LAST:event_TableauListMouseClicked
 
-    private void PrintButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PrintButtonMouseReleased
-        // TODO add your handling code here:
+    private void jLabel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseReleased
+        AccueilGestionDesRubriqueAdmin a = new AccueilGestionDesRubriqueAdmin();
+        a.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_PrintButtonMouseReleased
 
-    private void PrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrintButtonActionPerformed
-        MessageFormat header = new MessageFormat("Evenement Raport");
-        MessageFormat footer =new MessageFormat("Page{0,number,interger}");
-        try{
-            TableauList.print(JTable.PrintMode.NORMAL,header,footer);
-        }
-        catch(PrinterException e)
-        {
-             JOptionPane.showMessageDialog(null, "Cannot Print  ", "Cannot Print", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_PrintButtonActionPerformed
+    }//GEN-LAST:event_jLabel1MouseReleased
 
     /**
      * @param args the command line arguments
@@ -576,11 +499,10 @@ public final class ListRubriqueFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox ListRecherche;
     private javax.swing.JComboBox ListType;
     private javax.swing.JPanel PanneauRecherche;
-    private javax.swing.JButton PrintButton;
     private javax.swing.JLabel RechercherPar;
-    private javax.swing.JButton RetourButton;
     private javax.swing.JTable TableauList;
     private javax.swing.JTextField TitreBox;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -597,5 +519,4 @@ public final class ListRubriqueFrame extends javax.swing.JFrame {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-   
 }
