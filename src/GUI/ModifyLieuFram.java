@@ -48,7 +48,8 @@ public class ModifyLieuFram extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         ModifiyButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -112,10 +113,17 @@ public class ModifyLieuFram extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(1, 1, 0));
 
-        jButton1.setText("Retour");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ahmed\\Documents\\icon\\home.png")); // NOI18N
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel10MouseReleased(evt);
+            }
+        });
+
+        jLabel18.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ahmed\\Documents\\icon\\return.png")); // NOI18N
+        jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel18MouseReleased(evt);
             }
         });
 
@@ -124,15 +132,20 @@ public class ModifyLieuFram extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addComponent(jButton1))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel18))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
@@ -306,9 +319,8 @@ public class ModifyLieuFram extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -353,13 +365,6 @@ public class ModifyLieuFram extends javax.swing.JFrame {
        TelephoneBox.setText(l.getTel()+"");
        InformatinBox.setText(l.getInformation());
    }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        AccueilGestionDesRubriqueAdmin a = new AccueilGestionDesRubriqueAdmin();
-        a.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void LienImageBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LienImageBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LienImageBoxActionPerformed
@@ -423,6 +428,18 @@ public class ModifyLieuFram extends javax.swing.JFrame {
         
     }//GEN-LAST:event_LienMapBoxMouseClicked
 
+    private void jLabel10MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseReleased
+        Accueil a =new Accueil();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel10MouseReleased
+
+    private void jLabel18MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseReleased
+        ListLieuxFrameModifierAndSupprimer a =new ListLieuxFrameModifierAndSupprimer();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel18MouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -471,12 +488,13 @@ public class ModifyLieuFram extends javax.swing.JFrame {
     private javax.swing.JButton ModifiyButton;
     private javax.swing.JTextField NomBox;
     private javax.swing.JTextField TelephoneBox;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

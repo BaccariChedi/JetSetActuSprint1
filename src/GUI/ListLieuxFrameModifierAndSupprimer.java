@@ -58,7 +58,8 @@ public class ListLieuxFrameModifierAndSupprimer extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        RetourButton = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableauList = new javax.swing.JTable();
@@ -98,10 +99,17 @@ public class ListLieuxFrameModifierAndSupprimer extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(1, 1, 1));
 
-        RetourButton.setText("Retour");
-        RetourButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RetourButtonActionPerformed(evt);
+        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ahmed\\Documents\\icon\\home.png")); // NOI18N
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel10MouseReleased(evt);
+            }
+        });
+
+        jLabel18.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ahmed\\Documents\\icon\\return.png")); // NOI18N
+        jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel18MouseReleased(evt);
             }
         });
 
@@ -110,15 +118,19 @@ public class ListLieuxFrameModifierAndSupprimer extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(RetourButton, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(RetourButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel18))
                 .addContainerGap())
         );
 
@@ -176,12 +188,6 @@ public class ListLieuxFrameModifierAndSupprimer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RetourButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetourButtonActionPerformed
-        AccueilGestionDesRubriqueAdmin a =new AccueilGestionDesRubriqueAdmin();
-        a.setVisible(true);
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_RetourButtonActionPerformed
-
     private void TableauListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableauListMouseClicked
         int row=TableauList.getSelectedRow();
         String  Table_Click =(TableauList.getModel().getValueAt(row,0).toString()); 
@@ -195,6 +201,18 @@ public class ListLieuxFrameModifierAndSupprimer extends javax.swing.JFrame {
 //        EFram.setVisible(true);
 //        EFram.EvenementAffiche(l);
     }//GEN-LAST:event_TableauListMouseClicked
+
+    private void jLabel10MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseReleased
+        Accueil a =new Accueil();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel10MouseReleased
+
+    private void jLabel18MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseReleased
+        MenuLieuAdmin a =new MenuLieuAdmin();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel18MouseReleased
 
     /**
      * @param args the command line arguments
@@ -232,10 +250,11 @@ public class ListLieuxFrameModifierAndSupprimer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton RetourButton;
     private javax.swing.JTable TableauList;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
